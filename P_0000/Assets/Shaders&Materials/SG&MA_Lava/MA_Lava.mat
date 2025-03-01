@@ -52,11 +52,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _DistortionScale: 66
-    - _NoisePower: 6
+    - _NoisePower: 4
     - _NoiseScale: 33
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _TwirlStrength: 9
+    - _TwirlStrength: 6
     m_Colors:
     - _BaseColor: {r: 128, g: 0, b: 0, a: 0}
     - _PanSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
