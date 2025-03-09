@@ -11280,8 +11280,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 2, z: 32.5}
-  m_Center: {x: 0, y: 6.4, z: 0}
+  m_Size: {x: 18, y: 1, z: 32.5}
+  m_Center: {x: 0, y: 6.5, z: 0}
 --- !u!1001 &948824972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13218,6 +13218,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 15e30298e5ea3604083a2297eb88f479, type: 3}
       propertyPath: m_Name
       value: Chraracter_Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 15e30298e5ea3604083a2297eb88f479, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 15e30298e5ea3604083a2297eb88f479, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16250,8 +16258,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 2, z: 32.5}
-  m_Center: {x: 0, y: 6.4, z: 0}
+  m_Size: {x: 18, y: 1, z: 32.5}
+  m_Center: {x: 0, y: 6.5, z: 0}
 --- !u!1001 &1268494896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16714,8 +16722,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 2, z: 32.5}
-  m_Center: {x: 0, y: 6.4, z: 0}
+  m_Size: {x: 18, y: 1, z: 32.5}
+  m_Center: {x: 0, y: 6.5, z: 0}
 --- !u!1001 &1281871174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24562,8 +24570,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 18, y: 2, z: 32.5}
-  m_Center: {x: 0, y: 6.4, z: 0}
+  m_Size: {x: 18, y: 1, z: 32.5}
+  m_Center: {x: 0, y: 6.5, z: 0}
 --- !u!1001 &1938633443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25548,7 +25556,6 @@ GameObject:
   - component: {fileID: 2021726100}
   - component: {fileID: 2021726099}
   - component: {fileID: 2021726101}
-  - component: {fileID: 2021726102}
   m_Layer: 0
   m_Name: Third Person Player
   m_TagString: Untagged
@@ -25586,9 +25593,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pController: {fileID: 2021726100}
+  pAnimator: {fileID: 0}
   thirdPersonCamera: {fileID: 330585546}
-  pSpeed: 10
+  groundCheck: {fileID: 21415646}
+  pSpeed: 7
   turnSmoothTime: 0.1
+  airTime: 0.7
+  gravity: -9.81
+  fallMultiplier: 9.81
+  groundDistance: 0.2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  coyoteTime: 0.15
+  runAnimation: Anim_KnightRun
+  idleAnimation: Anim_KnightIdle
+  jumpAnimation: Anim_KnightJump
 --- !u!143 &2021726100
 CharacterController:
   m_ObjectHideFlags: 0
@@ -25614,27 +25634,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.25, z: 0}
---- !u!114 &2021726101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2021726097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8b3c6958bbf95446aa6d515a61a12e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  airTime: 0.8
-  gravity: -9.81
-  fallMultiplier: 9.81
-  groundCheck: {fileID: 21415646}
-  groundDistance: 0.4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!95 &2021726102
+--- !u!95 &2021726101
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
