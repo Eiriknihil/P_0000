@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump Settings")]
     [SerializeField] private float airTime = 0.7f; // Tiempo que tarda en alcanzar la altura máxima del salto
     [SerializeField] private float gravity = -9.81f; // Fuerza de la gravedad
-    [SerializeField] private float fallMultiplier = 8f; // Multiplicador de gravedad en caída
+    [SerializeField] private float fallMultiplier = 9.81f; // Multiplicador de gravedad en caída
     [SerializeField] private float groundDistance = 0.4f; // Radio de detección de suelo
     [SerializeField] private LayerMask groundLayer; // Capas consideradas como suelo
     [SerializeField] private float coyoteTime = 0.15f; // Tiempo en segundos para realizar el salto después de dejar una plataforma
