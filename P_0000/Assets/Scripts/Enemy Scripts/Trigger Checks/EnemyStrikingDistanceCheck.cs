@@ -11,18 +11,21 @@ public class EnemyStrikingDistanceCheck : MonoBehaviour
         _enemy = GetComponentInParent<Enemy>();
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if ( collision.gameObject == PlayerTarget )
+        if (other.gameObject == PlayerTarget)
         {
-            _enemy.SetStrikingDistanceBool(true);
+            Debug.Log("Jugador entró en el área de ataque.");
+            _enemy.SetStrikingDistanceBool(true); // Entra en AttackState
         }
     }
-    private void OnTriggerExit(Collider collision)
+
+    private void OnTriggerExit(Collider other)
     {
-        if ( collision.gameObject == PlayerTarget )
+        if (other.gameObject == PlayerTarget)
         {
-            _enemy.SetStrikingDistanceBool(true);
+            Debug.Log("Jugador salió del área de ataque.");
+            _enemy.SetStrikingDistanceBool(false); // Vuelve a ChaseState
         }
     }
 }

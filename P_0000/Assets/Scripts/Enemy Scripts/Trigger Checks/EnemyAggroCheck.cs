@@ -11,19 +11,21 @@ public class EnemyAggroCheck : MonoBehaviour
         _enemy = GetComponentInParent<Enemy>();
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if ( collision.gameObject == PlayerTarget )
+        if (other.gameObject == PlayerTarget)
         {
-            _enemy.SetAggroStatus(true);
-        }
-    }
-    private void OnTriggerExit(Collider collision)
-    {
-        if ( collision.gameObject == PlayerTarget )
-        {
-            _enemy.SetAggroStatus(true);
+            Debug.Log("Jugador entró en el área de aggro.");
+            _enemy.SetAggroStatus(true); // Activa el aggro
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == PlayerTarget)
+        {
+            Debug.Log("Jugador salió del área de aggro.");
+            // No desactives el aggro aquí, solo notifica que el jugador salió
+        }
+    }
 }

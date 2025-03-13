@@ -7,12 +7,14 @@ public class EnemyChaseState : EnemyState
     public override void EnterState()
     {
         base.EnterState();
+
         enemy.EnemyChaseBaseInstance.DoEnterLogic();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
         enemy.EnemyChaseBaseInstance.DoExitLogic();
     }
 

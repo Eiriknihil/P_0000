@@ -16787,9 +16787,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxHealth>k__BackingField: 100
-  EnemyPatrolBase: {fileID: 11400000, guid: bb391c6b98e69c14abbfcde3d7308bfa, type: 2}
-  EnemyChaseBase: {fileID: 11400000, guid: ba998d385d044b547836e30a97d9ea50, type: 2}
-  EnemyProjectileAttackBase: {fileID: 11400000, guid: c5772c64e34f9e84ea6f59cbdf7fec0d, type: 2}
+  enemyConfig: {fileID: 11400000, guid: 0c130e033fcc5634995389ca43310513, type: 2}
+  timeToStopChasing: 5
 --- !u!1001 &1377228767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22397,7 +22396,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
+  m_Radius: 2
   m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!114 &1846949209
 MonoBehaviour:
@@ -23200,7 +23199,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 8
   m_Center: {x: 0, y: 0.65, z: 0}
 --- !u!114 &1910175126
 MonoBehaviour:

@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IEnemyMoveable
 {
-    Rigidbody rb { get; set; }
-    void MoveEnemy(Vector3 velocity);
+    
+    void MoveEnemy(Vector3 destination);
 }
