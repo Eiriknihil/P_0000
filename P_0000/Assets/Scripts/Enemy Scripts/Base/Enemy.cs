@@ -10,8 +10,13 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
     public bool IsAggroed { get; set; }
     public bool IsWithinStrikingDistance { get; set; }
 
+    [Header("Death Animation")]
+    public string deathAnimationName = "Death"; // Nombre de la animación de muerte
+
     [SerializeField] private EnemyConfig enemyConfig; // Configuración de estados
     [SerializeField] private float timeToStopChasing = 10f; // Tiempo para dejar de perseguir al jugador
+
+    protected Animator animator; // Referencia al Animator (ahora es protected para que las clases derivadas puedan acceder)
 
     private float _timeSinceLastAggro; // Temporizador para controlar el tiempo sin aggro
 
@@ -30,10 +35,11 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         Attack
     }
 
-    private void Awake()
+    protected virtual void Awake() // Ahora es virtual
     {
         rb = GetComponent<Rigidbody>();
         NavAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>(); // Obtener la referencia al Animator
 
         // Inicializa los estados con las configuraciones proporcionadas
         EnemyPatrolBaseInstance = Instantiate(enemyConfig.patrolStateConfig);
@@ -48,7 +54,7 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         ProjectileAttackState = new EnemyProjectileAttackState(this, StateMachine);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         CurrentHealth = MaxHealth;
 
@@ -92,16 +98,33 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
         StateMachine.CurrentEnemyState.PhysicsUpdate();
     }
 
-    public void Damage(float damageAmount)
+    public virtual void Damage(float damageAmount) // Ahora es virtual
     {
         CurrentHealth -= damageAmount;
         if (CurrentHealth <= 0f) Die();
     }
 
-    public void Die()
+    public virtual void Die() // Ahora es virtual
     {
-        Destroy(gameObject, 2f);
+        // Reproducir la animación de muerte por su nombre
+        if (animator != null && !string.IsNullOrEmpty(deathAnimationName))
+        {
+            animator.Play(deathAnimationName); // Reproduce la animación de muerte
+        }
+
+        // Desactivar el script del enemigo
         enabled = false;
+
+        // Deshabilitar el NavMeshAgent (si existe)
+        if (NavAgent != null)
+        {
+            NavAgent.enabled = false;
+        }
+
+        // Destruir el objeto después de un tiempo (opcional)
+        Destroy(gameObject, 5f);
+
+        Debug.Log("El enemigo ha muerto.");
     }
 
     public void MoveEnemy(Vector3 destination)
@@ -134,7 +157,6 @@ public class Enemy : MonoBehaviour, IDamageable, IEnemyMoveable, ITriggerCheckab
 
     private bool IsPlayerInAggro()
     {
-
-        return Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) <= 10f; 
+        return Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) <= 10f;
     }
 }

@@ -169,6 +169,20 @@ public class PlayerMovement : MonoBehaviour
         // Calcular velocidad inicial usando fórmula física: v = √(2gh)
         initialJumpVelocity = Mathf.Abs(gravity) * airTime;
     }
+    public Vector3 GetMovementDirection()
+    {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        if (direction.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + thirdPersonCamera.eulerAngles.y;
+            return Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        }
+
+        return Vector3.zero; // Si no hay movimiento, devolver dirección cero
+    }
 
     private void OnValidate()
     {
